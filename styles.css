@@ -5,6 +5,7 @@
     --color-cream: #FFF5E6;
     --color-lilac: #E6D5FF;
     --color-text: #4A4A4A;
+    --blur-radius: 8px;
 }
 
 * {
@@ -43,11 +44,17 @@ body {
     background-image: url('floral-pattern.png');
     opacity: 0.1;
     pointer-events: none;
+    filter: blur(var(--blur-radius));
 }
 
 .hero-content {
     max-width: 800px;
     z-index: 1;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -169,18 +176,42 @@ h1 {
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
 .portfolio-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-card:hover::before {
+    opacity: 0.8;
 }
 
 .portfolio-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    filter: brightness(0.95) contrast(0.95);
+    transition: filter 0.3s ease;
+}
+
+.portfolio-card:hover img {
+    filter: brightness(1) contrast(1);
 }
 
 .portfolio-card h3 {
@@ -219,6 +250,29 @@ h1 {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.video-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.video-card:hover::before {
+    opacity: 0.8;
 }
 
 .video-thumbnail {
@@ -233,6 +287,12 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(0.95) contrast(0.95);
+    transition: filter 0.3s ease;
+}
+
+.video-card:hover .video-thumbnail img {
+    filter: brightness(1) contrast(1);
 }
 
 /* Contact Section */
@@ -240,11 +300,32 @@ h1 {
     padding: 4rem 2rem;
     background-color: var(--color-lilac);
     text-align: center;
+    position: relative;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('floral-pattern.png');
+    opacity: 0.05;
+    pointer-events: none;
+    filter: blur(var(--blur-radius));
 }
 
 .contact-content {
     max-width: 600px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .contact-links {
@@ -257,11 +338,16 @@ h1 {
 .contact-links a {
     color: var(--color-text);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .contact-links a:hover {
-    color: #666;
+    color: var(--color-text);
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
 }
 
 /* Footer */
@@ -270,6 +356,36 @@ footer {
     padding: 2rem;
     background-color: var(--color-cream);
     color: var(--color-text);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-text), transparent);
+    opacity: 0.2;
+}
+
+/* Add subtle noise texture to all sections */
+.hero, .about, .portfolio, .videos, .contact, footer {
+    position: relative;
+}
+
+.hero::after, .about::after, .portfolio::after, .videos::after, .contact::after, footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('noise.png');
+    opacity: 0.02;
+    pointer-events: none;
+    mix-blend-mode: overlay;
 }
 
 /* Responsive Design */
