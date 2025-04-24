@@ -1,5 +1,25 @@
-// Portfolio Filter Functionality
+// Smooth scrolling for navigation
 document.addEventListener('DOMContentLoaded', function() {
+    // Navigation smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetElement.offsetTop - navbarHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Portfolio Filter Functionality
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioCards = document.querySelectorAll('.portfolio-card');
     const videoCards = document.querySelectorAll('.video-card');
@@ -56,9 +76,42 @@ document.addEventListener('DOMContentLoaded', function() {
     if (exploreBtn) {
         exploreBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            document.querySelector('.portfolio').scrollIntoView({
+            const portfolioSection = document.querySelector('#portfolio');
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            const portfolioPosition = portfolioSection.offsetTop - navbarHeight;
+            
+            window.scrollTo({
+                top: portfolioPosition,
                 behavior: 'smooth'
             });
         });
     }
+
+    // Add active class to current section in navigation
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function updateActiveNav() {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            
+            if (window.pageYOffset >= (sectionTop - navbarHeight - 100)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav(); // Initial call
 }); 

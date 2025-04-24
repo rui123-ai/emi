@@ -6,6 +6,7 @@
     --color-lilac: #E6D5FF;
     --color-text: #4A4A4A;
     --blur-radius: 8px;
+    --nav-height: 60px;
 }
 
 * {
@@ -19,12 +20,49 @@ body {
     color: var(--color-text);
     line-height: 1.6;
     background-color: var(--color-cream);
+    padding-top: var(--nav-height);
+}
+
+/* Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.nav-link:hover {
+    background-color: var(--color-pastel-pink);
+    color: var(--color-text);
+    transform: translateY(-2px);
 }
 
 /* Hero Section */
 .hero {
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--color-pastel-pink), var(--color-pastel-lavender));
+    background: linear-gradient(135deg, var(--color-pastel-lavender), var(--color-pastel-blue));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,7 +133,7 @@ h1 {
 /* About Section */
 .about {
     padding: 4rem 2rem;
-    background-color: var(--color-cream);
+    background-color: var(--color-pastel-pink);
     position: relative;
 }
 
@@ -134,7 +172,7 @@ h1 {
 /* Portfolio Section */
 .portfolio {
     padding: 4rem 2rem;
-    background-color: var(--color-pastel-lavender);
+    background-color: var(--color-cream);
 }
 
 .portfolio-header {
@@ -234,7 +272,7 @@ h1 {
 /* Videos Section */
 .videos {
     padding: 4rem 2rem;
-    background-color: var(--color-pastel-blue);
+    background-color: var(--color-pastel-lavender);
 }
 
 .video-grid {
@@ -298,7 +336,7 @@ h1 {
 /* Contact Section */
 .contact {
     padding: 4rem 2rem;
-    background-color: var(--color-lilac);
+    background-color: var(--color-pastel-blue);
     text-align: center;
     position: relative;
 }
@@ -354,7 +392,7 @@ h1 {
 footer {
     text-align: center;
     padding: 2rem;
-    background-color: var(--color-cream);
+    background-color: var(--color-lilac);
     color: var(--color-text);
     position: relative;
 }
