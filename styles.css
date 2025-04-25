@@ -524,6 +524,20 @@ h1 {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
+.video-title {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 8px;
+    color: var(--color-text);
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .video-wrapper {
     position: relative;
     width: 100%;
