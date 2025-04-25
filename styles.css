@@ -191,34 +191,6 @@ h1 {
     color: var(--color-text);
 }
 
-.filters {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.filter-btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 2rem;
-    background-color: var(--color-pastel-lavender);
-    color: var(--color-text);
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.filter-btn:hover {
-    background-color: var(--color-pastel-blue);
-    transform: translateY(-2px);
-}
-
-.filter-btn.active {
-    background-color: var(--color-pastel-pink);
-    color: white;
-}
-
 .portfolio-section {
     margin-bottom: 4rem;
 }
