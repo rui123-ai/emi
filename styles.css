@@ -501,39 +501,6 @@ h1 {
     border-left: 4px solid var(--color-pastel-pink);
 }
 
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.9);
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    z-index: 2;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.play-button i {
-    font-size: 1.5rem;
-    color: var(--color-pastel-pink);
-    transition: color 0.3s ease;
-}
-
-.play-button:hover {
-    background-color: var(--color-pastel-pink);
-    transform: translate(-50%, -50%) scale(1.1);
-}
-
-.play-button:hover i {
-    color: white;
-}
-
 .video-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
