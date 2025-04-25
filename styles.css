@@ -68,9 +68,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem;
+    padding: 4rem;
     position: relative;
     overflow: hidden;
+    gap: 4rem;
 }
 
 .hero::before {
@@ -87,48 +88,57 @@ body {
 }
 
 .hero-content {
+    flex: 1;
     max-width: 600px;
     z-index: 1;
     backdrop-filter: blur(4px);
     background-color: rgba(255, 255, 255, 0.1);
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: left;
 }
 
 .about-card {
-    max-width: 400px;
+    flex: 1;
+    max-width: 500px;
     z-index: 1;
     backdrop-filter: blur(4px);
     background-color: rgba(255, 255, 255, 0.2);
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    margin-right: 2rem;
 }
 
 .about-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-.about-header i {
-    font-size: 2rem;
-    color: var(--color-text);
+.about-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-pastel-pink);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .about-header h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--color-text);
     margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
 }
 
 .about-text p {
-    margin-bottom: 1rem;
-    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
     color: var(--color-text);
+    font-size: 1.1rem;
 }
 
 .about-text p:last-child {
@@ -136,21 +146,24 @@ body {
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 4.5rem;
     margin-bottom: 1rem;
     color: var(--color-text);
+    font-weight: 600;
 }
 
 .tagline {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
     font-weight: 300;
+    color: var(--color-text);
 }
 
 .welcome-text {
     font-size: 1.2rem;
-    margin-bottom: 2rem;
-    font-style: italic;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+    color: var(--color-text);
 }
 
 .explore-btn {
@@ -162,7 +175,7 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 30px;
-    font-family: 'Sour Gummy', cursive;
+    font-family: 'Quicksand', sans-serif;
     letter-spacing: 0.5px;
 }
 
@@ -700,22 +713,31 @@ footer::before {
         flex-direction: column;
         justify-content: center;
         gap: 2rem;
-        padding: 4rem 2rem;
+        padding: 6rem 2rem;
+        text-align: center;
     }
 
     .hero-content, .about-card {
         max-width: 600px;
         width: 100%;
-        margin: 0;
+        margin: 0 auto;
+    }
+
+    .about-header {
+        justify-content: center;
+    }
+
+    .about-text {
+        text-align: left;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-content {
-        padding: 1.5rem;
+    .hero {
+        padding: 4rem 1.5rem;
     }
 
-    .about-card {
+    .hero-content, .about-card {
         padding: 1.5rem;
     }
 
@@ -723,10 +745,19 @@ footer::before {
         font-size: 3rem;
     }
 
-    .about-header h2 {
-        font-size: 1.5rem;
+    .tagline {
+        font-size: 1.4rem;
     }
-    
+
+    .about-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .about-icon {
+        width: 48px;
+        height: 48px;
+    }
+
     .contact-links {
         flex-direction: column;
         align-items: center;
