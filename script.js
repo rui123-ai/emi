@@ -319,4 +319,56 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // Video Popup Functionality
+    const videoPopupOverlay = document.querySelector('.video-popup-overlay');
+    const popupVideoPlayer = document.querySelector('.popup-video-player');
+    const closePopupBtn = document.querySelector('.close-popup');
+
+    // Function to open video popup
+    function openVideoPopup(videoSrc) {
+        popupVideoPlayer.src = videoSrc;
+        videoPopupOverlay.classList.add('active');
+        popupVideoPlayer.play().catch(error => {
+            console.log("Video autoplay prevented:", error);
+        });
+    }
+
+    // Function to close video popup
+    function closeVideoPopup() {
+        popupVideoPlayer.pause();
+        popupVideoPlayer.src = '';
+        videoPopupOverlay.classList.remove('active');
+    }
+
+    // Add click event to video thumbnails
+    document.querySelectorAll('.video-card').forEach(card => {
+        const videoPlayer = card.querySelector('.video-player');
+        const thumbnail = card.querySelector('.video-thumbnail');
+
+        card.addEventListener('click', (e) => {
+            // Prevent click if clicking on video controls
+            if (e.target.closest('.video-controls')) return;
+            
+            const videoSrc = videoPlayer.src;
+            openVideoPopup(videoSrc);
+        });
+    });
+
+    // Close popup when clicking close button
+    closePopupBtn.addEventListener('click', closeVideoPopup);
+
+    // Close popup when clicking outside
+    videoPopupOverlay.addEventListener('click', (e) => {
+        if (e.target === videoPopupOverlay) {
+            closeVideoPopup();
+        }
+    });
+
+    // Close popup with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && videoPopupOverlay.classList.contains('active')) {
+            closeVideoPopup();
+        }
+    });
 }); 
