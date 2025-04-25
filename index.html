@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Sour+Gummy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -70,38 +71,67 @@
             <h3>✨ DIVERSOS</h3>
             <div class="video-grid">
                 <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/diversos/thumbnails/irma-mais-velha.jpg">
-                            <source src="videos/diversos/irma-mais-velha.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
-                            <div class="progress-bar">
-                                <div class="progress"></div>
+                    <video class="video-player" src="fragmentos.mp4" poster="fragmentos-thumb.jpg">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="controls-row">
+                            <div class="controls-left">
+                                <button class="play-pause">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <div class="volume-control">
+                                    <button class="volume">
+                                        <i class="fas fa-volume-up"></i>
+                                    </button>
+                                    <div class="volume-slider">
+                                        <div class="volume-level"></div>
+                                    </div>
+                                </div>
+                                <span class="time-display">0:00 / 0:00</span>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                            <div class="controls-right">
+                                <button class="fullscreen">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <h3>Irmã mais Velha</h3>
-                    <p>Uma história sobre laços familiares.</p>
+                    <h3>Fragmentos de uma tarde</h3>
+                    <p>Uma animação experimental sobre memórias e momentos</p>
                 </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/diversos/thumbnails/clipes-animados.jpg">
-                            <source src="videos/diversos/clipes-animados.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/diversos/thumbnails/clipes-animados.jpg">
+                        <source src="videos/diversos/clipes-animados.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Clipes Animados</h3>
-                    <p>Animações que contam histórias.</p>
                 </div>
             </div>
         </div>
@@ -109,73 +139,125 @@
         <div class="video-category">
             <h3>🌟 MAIS POPULARES</h3>
             <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/populares/thumbnails/suco-de-abacaxi.jpg">
-                            <source src="videos/populares/suco-de-abacaxi.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/populares/thumbnails/suco-de-abacaxi.jpg">
+                        <source src="videos/populares/suco-de-abacaxi.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Suco de Abacaxi</h3>
-                    <p>Refrescante e divertido.</p>
                 </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/populares/thumbnails/eu-odeio-o-calor.jpg">
-                            <source src="videos/populares/eu-odeio-o-calor.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/populares/thumbnails/eu-odeio-o-calor.jpg">
+                        <source src="videos/populares/eu-odeio-o-calor.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Eu Odeio o Calor</h3>
-                    <p>Desabafos sobre o verão.</p>
                 </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/populares/thumbnails/coisa-de-pai.jpg">
-                            <source src="videos/populares/coisa-de-pai.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/populares/thumbnails/coisa-de-pai.jpg">
+                        <source src="videos/populares/coisa-de-pai.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Coisa de Pai</h3>
-                    <p>Momentos especiais em família.</p>
                 </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/populares/thumbnails/estoy-cansadita.jpg">
-                            <source src="videos/populares/estoy-cansadita.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/populares/thumbnails/estoy-cansadita.jpg">
+                        <source src="videos/populares/estoy-cansadita.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Estoy Cansadita</h3>
-                    <p>Quando o cansaço bate.</p>
                 </div>
             </div>
         </div>
@@ -183,124 +265,215 @@
         <div class="video-category">
             <h3>👑 CELEBRIDADES</h3>
             <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/celebridades/thumbnails/alanzoka.jpg">
-                            <source src="videos/celebridades/alanzoka.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/celebridades/thumbnails/alanzoka.jpg">
+                        <source src="videos/celebridades/alanzoka.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Alanzoka</h3>
-                    <p>Momentos com Alan.</p>
                 </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/celebridades/thumbnails/alanzoka-maethe.jpg">
-                            <source src="videos/celebridades/alanzoka-maethe.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/celebridades/thumbnails/alanzoka-maethe.jpg">
+                        <source src="videos/celebridades/alanzoka-maethe.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Alanzoka e Maethe</h3>
-                    <p>Colaboração especial.</p>
                 </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/celebridades/thumbnails/inutilismo-filho-irritante.jpg">
-                            <source src="videos/celebridades/inutilismo-filho-irritante.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/celebridades/thumbnails/inutilismo-filho-irritante.jpg">
+                        <source src="videos/celebridades/inutilismo-filho-irritante.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Inutilismo - Um Filho Irritante</h3>
-                    <p>Momentos de diversão com Lucas.</p>
                 </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/celebridades/thumbnails/inutilismo-filho-irritante-pascoa.jpg">
-                            <source src="videos/celebridades/inutilismo-filho-irritante-pascoa.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/celebridades/thumbnails/inutilismo-filho-irritante-pascoa.jpg">
+                        <source src="videos/celebridades/inutilismo-filho-irritante-pascoa.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Inutilismo - Um Filho Irritante na Páscoa</h3>
-                    <p>Especial de Páscoa com Lucas.</p>
                 </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/celebridades/thumbnails/bagi.jpg">
-                            <source src="videos/celebridades/bagi.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/celebridades/thumbnails/bagi.jpg">
+                        <source src="videos/celebridades/bagi.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Bagi</h3>
-                    <p>Aventuras com Bagi.</p>
                 </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/celebridades/thumbnails/coisa-nossa.jpg">
-                            <source src="videos/celebridades/coisa-nossa.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/celebridades/thumbnails/coisa-nossa.jpg">
+                        <source src="videos/celebridades/coisa-nossa.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Coisa Nossa</h3>
-                    <p>Momentos especiais com a galera.</p>
                 </div>
-                <div class="video-card">
-                    <div class="video-container">
-                        <video class="video-player" poster="videos/celebridades/thumbnails/vingadores-ultimato.jpg">
-                            <source src="videos/celebridades/vingadores-ultimato.mp4" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        <div class="video-controls">
-                            <button class="play-btn">▶️</button>
+                <div class="video-card" data-type="video">
+                    <video class="video-player" poster="videos/celebridades/thumbnails/vingadores-ultimato.jpg">
+                        <source src="videos/celebridades/vingadores-ultimato.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <div class="progress-container">
                             <div class="progress-bar">
                                 <div class="progress"></div>
                             </div>
-                            <button class="fullscreen-btn">⛶</button>
+                        </div>
+                        <div class="controls-row">
+                            <button class="control-button play-pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="volume-container">
+                                <button class="control-button volume">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <div class="volume-slider">
+                                    <div class="volume-level"></div>
+                                </div>
+                            </div>
+                            <div class="time-display">0:00 / 0:00</div>
+                            <button class="control-button fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
                         </div>
                     </div>
-                    <h3>Vingadores Ultimato</h3>
-                    <p>Uma aventura épica com os heróis.</p>
                 </div>
             </div>
         </div>

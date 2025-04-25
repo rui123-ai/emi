@@ -164,55 +164,103 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', updateActiveNav);
     updateActiveNav(); // Initial call
 
-    // Inicializar todos os players de vídeo
-    document.querySelectorAll('.video-container').forEach(container => {
-        const video = container.querySelector('.video-player');
-        const playBtn = container.querySelector('.play-btn');
-        const fullscreenBtn = container.querySelector('.fullscreen-btn');
-        const progress = container.querySelector('.progress');
-        const progressBar = container.querySelector('.progress-bar');
+    // Video Player Controls
+    document.querySelectorAll('.video-card').forEach(videoCard => {
+        const video = videoCard.querySelector('.video-player');
+        const controls = videoCard.querySelector('.video-controls');
+        const playPauseBtn = controls.querySelector('.play-pause');
+        const volumeBtn = controls.querySelector('.volume');
+        const volumeSlider = controls.querySelector('.volume-slider');
+        const volumeLevel = controls.querySelector('.volume-level');
+        const progressBar = controls.querySelector('.progress-bar');
+        const progress = controls.querySelector('.progress');
+        const timeDisplay = controls.querySelector('.time-display');
+        const fullscreenBtn = controls.querySelector('.fullscreen');
+
+        let isMouseDown = false;
 
         // Play/Pause
-        playBtn.addEventListener('click', () => {
+        playPauseBtn.addEventListener('click', () => {
             if (video.paused) {
-                // Pause todos os outros vídeos
-                document.querySelectorAll('.video-player').forEach(v => {
-                    if (v !== video) v.pause();
-                });
                 video.play();
-                playBtn.textContent = '⏸️';
+                playPauseBtn.querySelector('i').classList.replace('fa-play', 'fa-pause');
             } else {
                 video.pause();
-                playBtn.textContent = '▶️';
+                playPauseBtn.querySelector('i').classList.replace('fa-pause', 'fa-play');
             }
         });
 
-        // Tela cheia
-        fullscreenBtn.addEventListener('click', () => {
-            if (!document.fullscreenElement) {
-                container.requestFullscreen();
-            } else {
-                document.exitFullscreen();
+        // Volume Control
+        volumeBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            volumeBtn.querySelector('i').className = `fas ${video.muted ? 'fa-volume-mute' : 'fa-volume-up'}`;
+            volumeLevel.style.width = `${video.muted ? 0 : video.volume * 100}%`;
+        });
+
+        volumeSlider.addEventListener('mousedown', (e) => {
+            isMouseDown = true;
+            updateVolume(e);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isMouseDown) {
+                updateVolume(e);
             }
         });
 
-        // Atualizar barra de progresso
+        document.addEventListener('mouseup', () => {
+            isMouseDown = false;
+        });
+
+        function updateVolume(e) {
+            const rect = volumeSlider.getBoundingClientRect();
+            const percentage = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+            video.volume = percentage;
+            volumeLevel.style.width = `${percentage * 100}%`;
+            video.muted = false;
+            volumeBtn.querySelector('i').className = 'fas fa-volume-up';
+        }
+
+        // Progress Bar
         video.addEventListener('timeupdate', () => {
             const percentage = (video.currentTime / video.duration) * 100;
-            progress.style.width = percentage + '%';
+            progress.style.width = `${percentage}%`;
+            timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
         });
 
-        // Clique na barra de progresso
         progressBar.addEventListener('click', (e) => {
             const rect = progressBar.getBoundingClientRect();
-            const pos = (e.clientX - rect.left) / progressBar.offsetWidth;
-            video.currentTime = pos * video.duration;
+            const percentage = (e.clientX - rect.left) / rect.width;
+            video.currentTime = percentage * video.duration;
         });
 
-        // Reset quando o vídeo termina
-        video.addEventListener('ended', () => {
-            playBtn.textContent = '▶️';
-            progress.style.width = '0%';
+        // Fullscreen
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                videoCard.requestFullscreen();
+                fullscreenBtn.querySelector('i').classList.replace('fa-expand', 'fa-compress');
+            } else {
+                document.exitFullscreen();
+                fullscreenBtn.querySelector('i').classList.replace('fa-compress', 'fa-expand');
+            }
+        });
+
+        // Format time to MM:SS
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            seconds = Math.floor(seconds % 60);
+            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Show/hide controls on hover
+        videoCard.addEventListener('mouseenter', () => {
+            controls.style.opacity = '1';
+        });
+
+        videoCard.addEventListener('mouseleave', () => {
+            if (!video.paused) {
+                controls.style.opacity = '0';
+            }
         });
     });
 }); 
