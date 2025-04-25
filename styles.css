@@ -109,18 +109,7 @@ body {
 }
 
 .hero-separator {
-    width: 80%;
-    height: 2px;
-    margin: 3rem 0;
-    background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255, 255, 255, 0.3) 20%,
-        rgba(255, 255, 255, 0.6) 50%,
-        rgba(255, 255, 255, 0.3) 80%,
-        transparent
-    );
-    position: relative;
+    display: none;
 }
 
 .hero-separator::before {
@@ -198,27 +187,9 @@ body {
     font-size: 4rem;
     margin-bottom: 1rem;
     text-align: center;
-    color: #fff;
-    text-shadow: 0 0 7px #fff,
-                 0 0 10px #fff,
-                 0 0 21px #ffd1dc,
-                 0 0 42px #ffd1dc;
-    animation: neonPulse 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes neonPulse {
-    from {
-        text-shadow: 0 0 7px #fff,
-                     0 0 10px #fff,
-                     0 0 21px #ffd1dc,
-                     0 0 42px #ffd1dc;
-    }
-    to {
-        text-shadow: 0 0 4px #fff,
-                     0 0 7px #fff,
-                     0 0 15px #ffd1dc,
-                     0 0 30px #ffd1dc;
-    }
+    color: var(--color-pastel-pink);
+    text-shadow: none;
+    animation: none;
 }
 
 .about-card {
