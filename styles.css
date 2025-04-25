@@ -66,12 +66,11 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, var(--color-pastel-lavender), var(--color-pastel-blue));
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     padding: 4rem;
     position: relative;
     overflow: hidden;
-    gap: 4rem;
 }
 
 .hero::before {
@@ -87,19 +86,27 @@ body {
     filter: blur(var(--blur-radius));
 }
 
+.hero > div:not(.hero-separator) {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+}
+
 .hero-separator {
-    position: relative;
-    width: 2px;
-    align-self: stretch;
-    margin: 2rem 0;
+    width: 80%;
+    height: 2px;
+    margin: 3rem 0;
     background: linear-gradient(
-        to bottom,
+        to right,
         transparent,
         rgba(255, 255, 255, 0.3) 20%,
         rgba(255, 255, 255, 0.6) 50%,
         rgba(255, 255, 255, 0.3) 80%,
         transparent
     );
+    position: relative;
 }
 
 .hero-separator::before {
@@ -109,9 +116,9 @@ body {
     height: 8px;
     background-color: white;
     border-radius: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: separatorDot 3s ease-in-out infinite;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: separatorDotHorizontal 3s ease-in-out infinite;
 }
 
 .hero-separator::after {
@@ -125,13 +132,13 @@ body {
     animation: separatorFlower 4s ease-in-out infinite;
 }
 
-@keyframes separatorDot {
+@keyframes separatorDotHorizontal {
     0%, 100% {
-        top: 20%;
+        left: 20%;
         opacity: 0;
     }
     50% {
-        top: 80%;
+        left: 80%;
         opacity: 1;
     }
 }
@@ -227,22 +234,26 @@ h1 {
 }
 
 .explore-btn {
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
     border: 2px solid var(--color-text);
     color: var(--color-text);
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 30px;
     font-family: 'Quicksand', sans-serif;
     letter-spacing: 0.5px;
+    z-index: 1;
+    margin-top: 1rem;
 }
 
 .explore-btn:hover {
     background-color: var(--color-text);
     color: var(--color-cream);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* About Section */
@@ -769,47 +780,19 @@ footer::before {
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-    .hero {
+    .hero > div:not(.hero-separator) {
         flex-direction: column;
-        justify-content: center;
         gap: 2rem;
-        padding: 6rem 2rem;
-        text-align: center;
-    }
-
-    .hero-separator {
-        width: 80%;
-        height: 2px;
-        margin: 1rem auto;
-        background: linear-gradient(
-            to right,
-            transparent,
-            rgba(255, 255, 255, 0.3) 20%,
-            rgba(255, 255, 255, 0.6) 50%,
-            rgba(255, 255, 255, 0.3) 80%,
-            transparent
-        );
-    }
-
-    .hero-separator::before {
-        animation: separatorDotHorizontal 3s ease-in-out infinite;
-    }
-
-    @keyframes separatorDotHorizontal {
-        0%, 100% {
-            left: 20%;
-            opacity: 0;
-        }
-        50% {
-            left: 80%;
-            opacity: 1;
-        }
     }
 
     .hero-content, .about-card {
         max-width: 600px;
         width: 100%;
         margin: 0 auto;
+    }
+
+    .hero-separator {
+        margin: 2rem 0;
     }
 
     .about-header {
@@ -828,6 +811,16 @@ footer::before {
 
     .hero-content, .about-card {
         padding: 1.5rem;
+    }
+
+    .hero-separator {
+        width: 90%;
+        margin: 1.5rem 0;
+    }
+
+    .explore-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
     }
 
     h1 {
