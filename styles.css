@@ -175,6 +175,8 @@ body {
 .hero-content {
     background-color: rgba(255, 255, 255, 0.1);
     text-align: left;
+    position: relative;
+    padding-bottom: 140px; /* Space for the character image */
 }
 
 .about-card {
@@ -951,9 +953,12 @@ section {
     width: 280px;
     height: auto;
     object-fit: contain;
-    margin-bottom: 1rem;
+    position: absolute;
+    bottom: -140px;
+    right: -20px;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
     transition: transform 0.3s ease;
+    z-index: 2;
 }
 
 .character-image:hover {
@@ -965,21 +970,20 @@ section {
     background: white;
     border-radius: 20px;
     padding: 1.5rem;
-    margin-top: 1rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 90%;
+    width: 100%;
     text-align: center;
+    margin-bottom: 1rem;
 }
 
-.speech-bubble::before {
+.speech-bubble::after {
     content: '';
     position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 0 15px 15px 15px;
+    bottom: -15px;
+    right: 100px;
+    border-width: 15px 15px 0 15px;
     border-style: solid;
-    border-color: transparent transparent white transparent;
+    border-color: white transparent transparent transparent;
 }
 
 .speech-bubble p {
@@ -991,8 +995,14 @@ section {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .hero-content {
+        padding-bottom: 120px;
+    }
+
     .character-image {
         width: 220px;
+        bottom: -120px;
+        right: -10px;
     }
 
     .speech-bubble {
@@ -1001,5 +1011,9 @@ section {
 
     .speech-bubble p {
         font-size: 1rem;
+    }
+
+    .speech-bubble::after {
+        right: 60px;
     }
 } 
