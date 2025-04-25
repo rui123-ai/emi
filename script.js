@@ -269,17 +269,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     allVideoCards.forEach(card => {
         const video = card.querySelector('.video-player');
-        const thumbnail = card.querySelector('.video-thumbnail');
         const playButton = card.querySelector('.play-button');
 
-        if (video && thumbnail && playButton) {
-            // Preload video metadata
-            video.preload = 'metadata';
-            
-            // Click on play button or thumbnail
-            const playVideo = (e) => {
+        if (video && playButton) {
+            // Click on play button
+            playButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                e.stopPropagation();
                 
                 // Stop all other videos
                 allVideoCards.forEach(otherCard => {
@@ -294,51 +289,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Play this video
                 card.classList.add('playing');
-                video.style.display = 'block';
-                thumbnail.style.display = 'none';
-                playButton.style.display = 'none';
-                
-                // Get video source
-                const videoSource = video.querySelector('source');
-                if (videoSource && videoSource.src) {
-                    video.load(); // Reload the video
-                    video.play().catch(error => {
-                        console.log('Video playback failed:', error);
-                        // Show thumbnail and play button if video fails to play
-                        card.classList.remove('playing');
-                        video.style.display = 'none';
-                        thumbnail.style.display = 'block';
-                        playButton.style.display = 'flex';
-                    });
-                }
-            };
-
-            playButton.addEventListener('click', playVideo);
-            thumbnail.addEventListener('click', playVideo);
+                video.play().catch(error => {
+                    console.log('Video playback failed:', error);
+                    card.classList.remove('playing');
+                });
+            });
 
             // Handle video end
             video.addEventListener('ended', () => {
                 card.classList.remove('playing');
-                video.style.display = 'none';
-                thumbnail.style.display = 'block';
-                playButton.style.display = 'flex';
             });
 
             // Handle video pause
             video.addEventListener('pause', () => {
                 if (!video.seeking) {
                     card.classList.remove('playing');
-                    video.style.display = 'none';
-                    thumbnail.style.display = 'block';
-                    playButton.style.display = 'flex';
                 }
             });
 
             // Handle video play
             video.addEventListener('play', () => {
                 card.classList.add('playing');
-                thumbnail.style.display = 'none';
-                playButton.style.display = 'none';
             });
         }
     });
