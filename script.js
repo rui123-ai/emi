@@ -264,66 +264,84 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Video Popup Functionality
-    const videoPopupOverlay = document.querySelector('.video-popup-overlay');
-    const popupVideoPlayer = document.querySelector('.popup-video-player');
+    // Video functionality
+    const videoPopup = document.querySelector('.video-popup-overlay');
+    const popupVideo = document.querySelector('.video-popup video');
     const closePopupBtn = document.querySelector('.close-popup');
+    const allVideoCards = document.querySelectorAll('.video-card');
 
     // Function to open video popup
     function openVideoPopup(videoSrc) {
-        popupVideoPlayer.src = videoSrc;
-        videoPopupOverlay.classList.add('active');
-        popupVideoPlayer.play().catch(error => {
-            console.log("Video autoplay prevented:", error);
-        });
+        if (popupVideo && videoPopup) {
+            popupVideo.src = videoSrc;
+            videoPopup.style.display = 'flex';
+            popupVideo.play().catch(error => {
+                console.log('Video autoplay failed:', error);
+            });
+        }
     }
 
     // Function to close video popup
     function closeVideoPopup() {
-        popupVideoPlayer.pause();
-        popupVideoPlayer.src = '';
-        videoPopupOverlay.classList.remove('active');
+        if (popupVideo && videoPopup) {
+            popupVideo.pause();
+            popupVideo.src = '';
+            videoPopup.style.display = 'none';
+        }
     }
 
-    // Add click event to video cards
-    document.querySelectorAll('.video-card').forEach(card => {
-        const videoPlayer = card.querySelector('.video-player');
-        
-        card.addEventListener('click', () => {
-            if (videoPlayer && videoPlayer.src) {
-                openVideoPopup(videoPlayer.src);
-            }
-        });
+    // Add click event listeners to video cards
+    allVideoCards.forEach(card => {
+        const video = card.querySelector('video');
+        const thumbnail = card.querySelector('.video-thumbnail');
+        const playBtn = card.querySelector('.play-btn');
 
-        // Preview on hover
-        if (videoPlayer) {
+        if (video && thumbnail && playBtn) {
+            // Click on play button or thumbnail
+            const clickHandler = (e) => {
+                e.preventDefault();
+                const videoSrc = video.querySelector('source').src;
+                openVideoPopup(videoSrc);
+            };
+
+            playBtn.addEventListener('click', clickHandler);
+            thumbnail.addEventListener('click', clickHandler);
+
+            // Hover effect
             card.addEventListener('mouseenter', () => {
-                videoPlayer.currentTime = 0;
-                videoPlayer.play().catch(() => {
-                    // Autoplay prevented - that's okay for preview
-                });
+                if (video) {
+                    video.play().catch(error => {
+                        console.log('Video preview failed:', error);
+                    });
+                }
             });
 
             card.addEventListener('mouseleave', () => {
-                videoPlayer.pause();
-                videoPlayer.currentTime = 0;
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
             });
         }
     });
 
     // Close popup when clicking close button
-    closePopupBtn.addEventListener('click', closeVideoPopup);
+    if (closePopupBtn) {
+        closePopupBtn.addEventListener('click', closeVideoPopup);
+    }
 
-    // Close popup when clicking outside
-    videoPopupOverlay.addEventListener('click', (e) => {
-        if (e.target === videoPopupOverlay) {
-            closeVideoPopup();
-        }
-    });
+    // Close popup when clicking outside the video
+    if (videoPopup) {
+        videoPopup.addEventListener('click', (e) => {
+            if (e.target === videoPopup) {
+                closeVideoPopup();
+            }
+        });
+    }
 
     // Close popup with Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && videoPopupOverlay.classList.contains('active')) {
+        if (e.key === 'Escape') {
             closeVideoPopup();
         }
     });
@@ -358,4 +376,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-}); 
+});
