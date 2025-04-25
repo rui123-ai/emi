@@ -176,7 +176,7 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     text-align: left;
     position: relative;
-    padding-bottom: 180px; /* Increased space for larger image */
+    padding-bottom: 240px; /* Increased space for larger image */
 }
 
 .about-card {
@@ -881,13 +881,13 @@ footer::before {
     }
 
     .hero-content {
-        padding-bottom: 160px;
+        padding-bottom: 200px;
     }
 
     .character-image {
-        width: 320px;
-        bottom: -160px;
-        right: -20px;
+        width: 400px;
+        bottom: -200px;
+        right: -30px;
     }
 }
 
@@ -941,13 +941,13 @@ footer::before {
     }
 
     .hero-content {
-        padding-bottom: 140px;
+        padding-bottom: 160px;
     }
 
     .character-image {
-        width: 280px;
-        bottom: -140px;
-        right: -15px;
+        width: 320px;
+        bottom: -160px;
+        right: -20px;
     }
 }
 
@@ -970,19 +970,19 @@ section {
 }
 
 .character-image {
-    width: 380px; /* Increased from 280px */
+    width: 480px; /* Increased from 380px */
     height: auto;
     object-fit: contain;
     position: absolute;
-    bottom: -180px; /* Adjusted for larger image */
-    right: -30px; /* Adjusted position */
+    bottom: -240px; /* Adjusted for larger image */
+    right: -40px; /* Adjusted position */
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
     transition: transform 0.3s ease;
     z-index: 2;
 }
 
 .character-image:hover {
-    transform: translateY(-8px); /* Slightly larger hover effect */
+    transform: translateY(-10px); /* Slightly larger hover effect */
 }
 
 .speech-bubble {
