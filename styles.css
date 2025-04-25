@@ -257,6 +257,14 @@ body {
     object-fit: cover;
     border: 3px solid var(--color-pastel-pink);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 2px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-icon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .about-header h2 {
@@ -905,6 +913,7 @@ footer::before {
     .about-icon {
         width: 48px;
         height: 48px;
+        border-width: 2px;
     }
 
     .contact-links {
