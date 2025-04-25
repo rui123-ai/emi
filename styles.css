@@ -176,7 +176,7 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     text-align: left;
     position: relative;
-    padding-bottom: 140px; /* Space for the character image */
+    padding-bottom: 180px; /* Increased space for larger image */
 }
 
 .about-card {
@@ -879,6 +879,16 @@ footer::before {
     .about-text {
         text-align: left;
     }
+
+    .hero-content {
+        padding-bottom: 160px;
+    }
+
+    .character-image {
+        width: 320px;
+        bottom: -160px;
+        right: -20px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -929,6 +939,16 @@ footer::before {
         max-width: 250px;
         justify-content: center;
     }
+
+    .hero-content {
+        padding-bottom: 140px;
+    }
+
+    .character-image {
+        width: 280px;
+        bottom: -140px;
+        right: -15px;
+    }
 }
 
 html {
@@ -950,19 +970,19 @@ section {
 }
 
 .character-image {
-    width: 280px;
+    width: 380px; /* Increased from 280px */
     height: auto;
     object-fit: contain;
     position: absolute;
-    bottom: -140px;
-    right: -20px;
+    bottom: -180px; /* Adjusted for larger image */
+    right: -30px; /* Adjusted position */
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
     transition: transform 0.3s ease;
     z-index: 2;
 }
 
 .character-image:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px); /* Slightly larger hover effect */
 }
 
 .speech-bubble {
@@ -995,16 +1015,6 @@ section {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .hero-content {
-        padding-bottom: 120px;
-    }
-
-    .character-image {
-        width: 220px;
-        bottom: -120px;
-        right: -10px;
-    }
-
     .speech-bubble {
         padding: 1.2rem;
     }
