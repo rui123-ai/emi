@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Video functionality
     const videoPopup = document.querySelector('.video-popup-overlay');
-    const popupVideo = document.querySelector('.video-popup video');
+    const popupVideo = document.querySelector('.popup-video-player');
     const closePopupBtn = document.querySelector('.close-popup');
     const allVideoCards = document.querySelectorAll('.video-card');
 
@@ -275,6 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (popupVideo && videoPopup) {
             popupVideo.src = videoSrc;
             videoPopup.style.display = 'flex';
+            videoPopup.classList.add('active');
             popupVideo.play().catch(error => {
                 console.log('Video autoplay failed:', error);
             });
@@ -287,6 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
             popupVideo.pause();
             popupVideo.src = '';
             videoPopup.style.display = 'none';
+            videoPopup.classList.remove('active');
         }
     }
 
@@ -294,25 +296,29 @@ document.addEventListener('DOMContentLoaded', function() {
     allVideoCards.forEach(card => {
         const video = card.querySelector('video');
         const thumbnail = card.querySelector('.video-thumbnail');
-        const playBtn = card.querySelector('.play-btn');
+        const playButton = card.querySelector('.play-button');
 
-        if (video && thumbnail && playBtn) {
+        if (video && thumbnail && playButton) {
             // Click on play button or thumbnail
             const clickHandler = (e) => {
                 e.preventDefault();
-                const videoSrc = video.querySelector('source').src;
+                const videoSrc = video.src;
                 openVideoPopup(videoSrc);
             };
 
-            playBtn.addEventListener('click', clickHandler);
+            playButton.addEventListener('click', clickHandler);
             thumbnail.addEventListener('click', clickHandler);
 
-            // Hover effect
+            // Preview on hover
             card.addEventListener('mouseenter', () => {
                 if (video) {
+                    video.style.display = 'block';
                     video.play().catch(error => {
                         console.log('Video preview failed:', error);
                     });
+                }
+                if (thumbnail) {
+                    thumbnail.style.opacity = '0';
                 }
             });
 
@@ -320,6 +326,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (video) {
                     video.pause();
                     video.currentTime = 0;
+                    video.style.display = 'none';
+                }
+                if (thumbnail) {
+                    thumbnail.style.opacity = '1';
                 }
             });
         }
