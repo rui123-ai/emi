@@ -129,15 +129,17 @@ body {
     font-family: 'Sour Gummy', cursive;
     font-size: 4rem;
     text-align: center;
-    color: var(--color-pastel-pink);
-    -webkit-text-stroke: 1px black;
-    text-stroke: 1px black;
+    color: #FFF4BD; /* Pastel yellow */
+    text-shadow: 0 0 10px var(--color-pastel-pink),
+                0 0 20px var(--color-pastel-pink);
     display: inline-block;
     padding: 0;
     line-height: 1.2;
     border: none;
     width: fit-content;
     margin: 0 auto 1rem;
+    -webkit-text-stroke: none;
+    text-stroke: none;
 }
 
 .about-card {
