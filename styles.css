@@ -503,9 +503,11 @@ h1 {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     padding: 1rem;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .video-card {
@@ -644,9 +646,8 @@ h1 {
 
 @media (max-width: 768px) {
     .video-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        grid-template-columns: 1fr;
         gap: 1rem;
-        padding: 0.5rem;
     }
 
     .video-title-overlay {
@@ -704,24 +705,18 @@ h1 {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
     max-width: 1600px;
     margin: 0 auto;
 }
 
-/* Adjust grid for different categories */
-.video-category:first-child .video-grid {
-    grid-template-columns: repeat(2, 1fr); /* DIVERSOS - 2 videos */
-}
-
-.video-category:nth-child(2) .video-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* MAIS POPULARES - 4 videos */
-}
-
+/* Remove specific grid adjustments for different categories since we want them all the same */
+.video-category:first-child .video-grid,
+.video-category:nth-child(2) .video-grid,
 .video-category:last-child .video-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* CELEBRIDADES - 7 videos */
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .video-card {
