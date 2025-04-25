@@ -19,6 +19,49 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Video IDs mapping
+    const videoIds = {
+        'irma-mais-velha': 'VIDEO_ID_1',
+        'clipes-animados': 'VIDEO_ID_2',
+        'suco-de-abacaxi': 'VIDEO_ID_3',
+        'eu-odeio-o-calor': 'VIDEO_ID_4',
+        'coisa-de-pai': 'VIDEO_ID_5',
+        'estoy-cansadita': 'VIDEO_ID_6',
+        'alanzona': 'VIDEO_ID_7',
+        'alanzona-maethe': 'VIDEO_ID_8',
+        'inutilismo-filho-irritante': 'VIDEO_ID_9',
+        'inutilismo-filho-irritante-pascoa': 'VIDEO_ID_10',
+        'bagi': 'VIDEO_ID_11',
+        'coisa-nossa': 'VIDEO_ID_12'
+    };
+
+    // Handle video playback
+    document.querySelectorAll('.play-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const videoId = this.dataset.video;
+            const card = this.closest('.video-card');
+            const iframe = card.querySelector('iframe');
+            
+            // Remove playing class from all other cards
+            document.querySelectorAll('.video-card.playing').forEach(playingCard => {
+                if (playingCard !== card) {
+                    playingCard.classList.remove('playing');
+                    const playingIframe = playingCard.querySelector('iframe');
+                    playingIframe.src = 'about:blank';
+                }
+            });
+
+            // Toggle playing state
+            if (!card.classList.contains('playing')) {
+                card.classList.add('playing');
+                iframe.src = `https://www.youtube.com/embed/${videoIds[videoId]}?autoplay=1`;
+            } else {
+                card.classList.remove('playing');
+                iframe.src = 'about:blank';
+            }
+        });
+    });
+
     // Portfolio Filter Functionality
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioCards = document.querySelectorAll('.portfolio-card');

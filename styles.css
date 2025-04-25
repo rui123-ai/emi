@@ -348,6 +348,9 @@ h1 {
 .video-thumbnail {
     position: relative;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background-color: #000;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
 }
 
 .video-thumbnail img {
@@ -357,12 +360,60 @@ h1 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.95) contrast(0.95);
-    transition: filter 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
-.video-card:hover .video-thumbnail img {
-    filter: brightness(1) contrast(1);
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-overlay iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.play-btn {
+    background-color: var(--color-pastel-pink);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Sour Gummy', cursive;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.play-btn:hover {
+    background-color: var(--color-pastel-lavender);
+    transform: translateY(-2px);
+}
+
+.video-card.playing .video-thumbnail img {
+    opacity: 0;
+}
+
+.video-card.playing .video-overlay {
+    opacity: 1;
+}
+
+.video-card.playing .video-overlay iframe {
+    display: block;
 }
 
 /* Contact Section */
