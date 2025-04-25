@@ -497,7 +497,6 @@ h1 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     color: var(--color-text);
-    font-family: 'Quicksand', sans-serif;
     padding-left: 1rem;
     border-left: 4px solid var(--color-pastel-pink);
 }
@@ -586,8 +585,7 @@ h1 {
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    opacity: 1;
-    transition: opacity 0.3s ease;
+    display: block;
 }
 
 .play-button {
@@ -621,11 +619,6 @@ h1 {
 
 .play-button:hover i {
     color: white;
-}
-
-.video-card.playing .video-thumbnail,
-.video-card.playing .play-button {
-    display: none;
 }
 
 .video-card.playing .video-player {

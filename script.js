@@ -265,10 +265,88 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Video functionality
+    const allVideoCards = document.querySelectorAll('.video-card');
+
+    allVideoCards.forEach(card => {
+        const video = card.querySelector('.video-player');
+        const thumbnail = card.querySelector('.video-thumbnail');
+        const playButton = card.querySelector('.play-button');
+
+        if (video && thumbnail && playButton) {
+            // Preload video metadata
+            video.preload = 'metadata';
+            
+            // Click on play button or thumbnail
+            const playVideo = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Stop all other videos
+                allVideoCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        const otherVideo = otherCard.querySelector('.video-player');
+                        if (otherVideo) {
+                            otherVideo.pause();
+                            otherCard.classList.remove('playing');
+                        }
+                    }
+                });
+
+                // Play this video
+                card.classList.add('playing');
+                video.style.display = 'block';
+                thumbnail.style.display = 'none';
+                playButton.style.display = 'none';
+                
+                // Get video source
+                const videoSource = video.querySelector('source');
+                if (videoSource && videoSource.src) {
+                    video.load(); // Reload the video
+                    video.play().catch(error => {
+                        console.log('Video playback failed:', error);
+                        // Show thumbnail and play button if video fails to play
+                        card.classList.remove('playing');
+                        video.style.display = 'none';
+                        thumbnail.style.display = 'block';
+                        playButton.style.display = 'flex';
+                    });
+                }
+            };
+
+            playButton.addEventListener('click', playVideo);
+            thumbnail.addEventListener('click', playVideo);
+
+            // Handle video end
+            video.addEventListener('ended', () => {
+                card.classList.remove('playing');
+                video.style.display = 'none';
+                thumbnail.style.display = 'block';
+                playButton.style.display = 'flex';
+            });
+
+            // Handle video pause
+            video.addEventListener('pause', () => {
+                if (!video.seeking) {
+                    card.classList.remove('playing');
+                    video.style.display = 'none';
+                    thumbnail.style.display = 'block';
+                    playButton.style.display = 'flex';
+                }
+            });
+
+            // Handle video play
+            video.addEventListener('play', () => {
+                card.classList.add('playing');
+                thumbnail.style.display = 'none';
+                playButton.style.display = 'none';
+            });
+        }
+    });
+
+    // Video functionality
     const videoPopup = document.querySelector('.video-popup-overlay');
     const popupVideo = document.querySelector('.popup-video-player');
     const closePopupBtn = document.querySelector('.close-popup');
-    const allVideoCards = document.querySelectorAll('.video-card');
 
     // Function to open video popup
     function openVideoPopup(videoSrc) {
@@ -297,62 +375,6 @@ document.addEventListener('DOMContentLoaded', function() {
             videoPopup.classList.remove('active');
         }
     }
-
-    // Add click event listeners to video cards
-    allVideoCards.forEach(card => {
-        const video = card.querySelector('.video-player');
-        const thumbnail = card.querySelector('.video-thumbnail');
-        const playButton = card.querySelector('.play-button');
-
-        if (video && thumbnail && playButton) {
-            // Preload video metadata
-            video.preload = 'metadata';
-            
-            // Click on play button or thumbnail
-            const playVideo = (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // Stop all other videos
-                allVideoCards.forEach(otherCard => {
-                    if (otherCard !== card) {
-                        const otherVideo = otherCard.querySelector('.video-player');
-                        if (otherVideo) {
-                            otherVideo.pause();
-                            otherVideo.currentTime = 0;
-                            otherCard.classList.remove('playing');
-                        }
-                    }
-                });
-
-                // Play this video
-                card.classList.add('playing');
-                video.style.display = 'block';
-                video.play().catch(error => {
-                    console.log('Video playback failed:', error);
-                });
-            };
-
-            playButton.addEventListener('click', playVideo);
-            thumbnail.addEventListener('click', playVideo);
-
-            // Handle video end
-            video.addEventListener('ended', () => {
-                card.classList.remove('playing');
-                video.style.display = 'none';
-                thumbnail.style.opacity = '1';
-            });
-
-            // Handle video pause
-            video.addEventListener('pause', () => {
-                if (!video.seeking) {
-                    card.classList.remove('playing');
-                    video.style.display = 'none';
-                    thumbnail.style.opacity = '1';
-                }
-            });
-        }
-    });
 
     // Close popup when clicking close button
     if (closePopupBtn) {
