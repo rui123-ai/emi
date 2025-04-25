@@ -289,14 +289,26 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.video-card').forEach(card => {
         const videoPlayer = card.querySelector('.video-player');
         
-        card.addEventListener('click', (e) => {
-            // Prevent click if clicking on video controls
-            if (e.target.closest('.video-controls')) return;
-            
+        card.addEventListener('click', () => {
             if (videoPlayer && videoPlayer.src) {
                 openVideoPopup(videoPlayer.src);
             }
         });
+
+        // Preview on hover
+        if (videoPlayer) {
+            card.addEventListener('mouseenter', () => {
+                videoPlayer.currentTime = 0;
+                videoPlayer.play().catch(() => {
+                    // Autoplay prevented - that's okay for preview
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                videoPlayer.pause();
+                videoPlayer.currentTime = 0;
+            });
+        }
     });
 
     // Close popup when clicking close button
