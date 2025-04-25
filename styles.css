@@ -176,7 +176,21 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
     text-align: left;
     position: relative;
-    padding-bottom: 240px; /* Increased space for larger image */
+    padding: 2rem;
+    padding-bottom: 240px; /* Space for character image */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 4rem;
+    color: var(--color-text);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .about-card {
@@ -880,6 +894,10 @@ footer::before {
         text-align: left;
     }
 
+    .hero-title {
+        font-size: 3.5rem;
+    }
+
     .hero-content {
         padding-bottom: 200px;
     }
@@ -887,7 +905,10 @@ footer::before {
     .character-image {
         width: 400px;
         bottom: -200px;
-        right: -30px;
+    }
+
+    .speech-bubble {
+        margin-bottom: 40px;
     }
 }
 
@@ -940,6 +961,11 @@ footer::before {
         justify-content: center;
     }
 
+    .hero-title {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+
     .hero-content {
         padding-bottom: 160px;
     }
@@ -947,7 +973,15 @@ footer::before {
     .character-image {
         width: 320px;
         bottom: -160px;
-        right: -20px;
+    }
+
+    .speech-bubble {
+        padding: 1.2rem;
+        margin-bottom: 30px;
+    }
+
+    .speech-bubble p {
+        font-size: 1rem;
     }
 }
 
@@ -970,19 +1004,20 @@ section {
 }
 
 .character-image {
-    width: 480px; /* Increased from 380px */
+    width: 480px;
     height: auto;
     object-fit: contain;
     position: absolute;
-    bottom: -240px; /* Adjusted for larger image */
-    right: -40px; /* Adjusted position */
+    bottom: -240px;
+    left: 50%;
+    transform: translateX(-50%);
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
     transition: transform 0.3s ease;
     z-index: 2;
 }
 
 .character-image:hover {
-    transform: translateY(-10px); /* Slightly larger hover effect */
+    transform: translateX(-50%) translateY(-10px);
 }
 
 .speech-bubble {
@@ -993,14 +1028,16 @@ section {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 60px; /* Space between bubble and character */
+    z-index: 1;
 }
 
 .speech-bubble::after {
     content: '';
     position: absolute;
     bottom: -15px;
-    right: 100px;
+    left: 50%;
+    transform: translateX(-50%);
     border-width: 15px 15px 0 15px;
     border-style: solid;
     border-color: white transparent transparent transparent;
