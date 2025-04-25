@@ -1246,4 +1246,12 @@ section {
 
 .portfolio-card img:hover {
     transform: scale(1.05);
+}
+
+.site-title {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    text-transform: lowercase;
+    text-shadow: 0 0 10px #ffc0cb, 0 0 20px #ffc0cb, 0 0 30px #ffc0cb;
+    color: #fff;
 } 
