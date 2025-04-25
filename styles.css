@@ -67,8 +67,7 @@ body {
     background: linear-gradient(135deg, var(--color-pastel-lavender), var(--color-pastel-blue));
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: space-between;
     padding: 2rem;
     position: relative;
     overflow: hidden;
@@ -88,13 +87,52 @@ body {
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 600px;
     z-index: 1;
     backdrop-filter: blur(4px);
     background-color: rgba(255, 255, 255, 0.1);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.about-card {
+    max-width: 400px;
+    z-index: 1;
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-right: 2rem;
+}
+
+.about-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-header i {
+    font-size: 2rem;
+    color: var(--color-text);
+}
+
+.about-header h2 {
+    font-size: 1.8rem;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
 }
 
 h1 {
@@ -657,9 +695,36 @@ footer::before {
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        padding: 4rem 2rem;
+    }
+
+    .hero-content, .about-card {
+        max-width: 600px;
+        width: 100%;
+        margin: 0;
+    }
+}
+
 @media (max-width: 768px) {
-    .about-content {
-        grid-template-columns: 1fr;
+    .hero-content {
+        padding: 1.5rem;
+    }
+
+    .about-card {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    .about-header h2 {
+        font-size: 1.5rem;
     }
     
     .contact-links {
@@ -672,21 +737,6 @@ footer::before {
         width: 100%;
         max-width: 250px;
         justify-content: center;
-    }
-    
-    h1 {
-        font-size: 3rem;
-    }
-
-    .video-category h3 {
-        font-size: 1.5rem;
-    }
-
-    .video-grid,
-    .video-category:first-child .video-grid,
-    .video-category:nth-child(2) .video-grid,
-    .video-category:last-child .video-grid {
-        grid-template-columns: 1fr;
     }
 }
 
