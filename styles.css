@@ -87,6 +87,66 @@ body {
     filter: blur(var(--blur-radius));
 }
 
+.hero-separator {
+    position: relative;
+    width: 2px;
+    align-self: stretch;
+    margin: 2rem 0;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 255, 255, 0.3) 20%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0.3) 80%,
+        transparent
+    );
+}
+
+.hero-separator::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: separatorDot 3s ease-in-out infinite;
+}
+
+.hero-separator::after {
+    content: '✿';
+    position: absolute;
+    font-size: 1.2rem;
+    color: var(--color-pastel-pink);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: separatorFlower 4s ease-in-out infinite;
+}
+
+@keyframes separatorDot {
+    0%, 100% {
+        top: 20%;
+        opacity: 0;
+    }
+    50% {
+        top: 80%;
+        opacity: 1;
+    }
+}
+
+@keyframes separatorFlower {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg);
+        opacity: 1;
+    }
+}
+
 .hero-content {
     flex: 1;
     max-width: 600px;
@@ -715,6 +775,35 @@ footer::before {
         gap: 2rem;
         padding: 6rem 2rem;
         text-align: center;
+    }
+
+    .hero-separator {
+        width: 80%;
+        height: 2px;
+        margin: 1rem auto;
+        background: linear-gradient(
+            to right,
+            transparent,
+            rgba(255, 255, 255, 0.3) 20%,
+            rgba(255, 255, 255, 0.6) 50%,
+            rgba(255, 255, 255, 0.3) 80%,
+            transparent
+        );
+    }
+
+    .hero-separator::before {
+        animation: separatorDotHorizontal 3s ease-in-out infinite;
+    }
+
+    @keyframes separatorDotHorizontal {
+        0%, 100% {
+            left: 20%;
+            opacity: 0;
+        }
+        50% {
+            left: 80%;
+            opacity: 1;
+        }
     }
 
     .hero-content, .about-card {
