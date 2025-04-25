@@ -263,4 +263,60 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Video category filtering
+    const categoryHeaders = document.querySelectorAll('.category-header h4');
+    const allVideoCards = document.querySelectorAll('.video-card');
+
+    categoryHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const category = header.textContent.split(' ')[1].toLowerCase();
+            
+            // Remove active class from all headers
+            categoryHeaders.forEach(h => h.classList.remove('active'));
+            // Add active class to clicked header
+            header.classList.add('active');
+
+            // Filter videos
+            allVideoCards.forEach(card => {
+                const cardCategory = card.dataset.category;
+                if (category === 'todos' || cardCategory === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+
+    // Video thumbnail hover effect
+    allVideoCards.forEach(card => {
+        const thumbnail = card.querySelector('.video-thumbnail');
+        const video = card.querySelector('.video-player');
+
+        if (thumbnail && video) {
+            card.addEventListener('mouseenter', () => {
+                thumbnail.style.opacity = '0';
+                video.currentTime = 0;
+                video.play().catch(() => {
+                    // Handle autoplay restriction
+                    thumbnail.style.opacity = '0.7';
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                thumbnail.style.opacity = '1';
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
+    });
 }); 
