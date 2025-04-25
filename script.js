@@ -32,12 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
         'estoy-cansadita': '', // Coloque o ID do vídeo "Estoy Cansadita" aqui
 
         // CELEBRIDADES
-        'alanzona': '', // Coloque o ID do vídeo "Alanzona" aqui
-        'alanzona-maethe': '', // Coloque o ID do vídeo "Alanzona e Maethe" aqui
+        'alanzoka': '', // Coloque o ID do vídeo "Alanzoka" aqui
+        'alanzoka-maethe': '', // Coloque o ID do vídeo "Alanzoka e Maethe" aqui
         'inutilismo-filho-irritante': '', // Coloque o ID do vídeo "Inutilismo - Um Filho Irritante" aqui
         'inutilismo-filho-irritante-pascoa': '', // Coloque o ID do vídeo "Inutilismo - Um Filho Irritante na Páscoa" aqui
         'bagi': '', // Coloque o ID do vídeo "Bagi" aqui
-        'coisa-nossa': '' // Coloque o ID do vídeo "Coisa Nossa" aqui
+        'coisa-nossa': '', // Coloque o ID do vídeo "Coisa Nossa" aqui
+        'vingadores-ultimato': '' // Coloque o ID do vídeo "Vingadores Ultimato" aqui
     };
 
     // Handle video playback
