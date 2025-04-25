@@ -309,39 +309,47 @@ document.addEventListener('DOMContentLoaded', function() {
             video.preload = 'metadata';
             
             // Click on play button or thumbnail
-            const clickHandler = (e) => {
+            const playVideo = (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                openVideoPopup(video.src);
+                
+                // Stop all other videos
+                allVideoCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        const otherVideo = otherCard.querySelector('.video-player');
+                        if (otherVideo) {
+                            otherVideo.pause();
+                            otherVideo.currentTime = 0;
+                            otherCard.classList.remove('playing');
+                        }
+                    }
+                });
+
+                // Play this video
+                card.classList.add('playing');
+                video.style.display = 'block';
+                video.play().catch(error => {
+                    console.log('Video playback failed:', error);
+                });
             };
 
-            playButton.addEventListener('click', clickHandler);
-            thumbnail.addEventListener('click', clickHandler);
+            playButton.addEventListener('click', playVideo);
+            thumbnail.addEventListener('click', playVideo);
 
-            // Preview on hover
-            let previewTimeout;
-            card.addEventListener('mouseenter', () => {
-                if (video) {
-                    // Show video with a slight delay to prevent unwanted playback
-                    previewTimeout = setTimeout(() => {
-                        video.style.display = 'block';
-                        video.muted = true; // Ensure preview is muted
-                        video.play().catch(error => {
-                            console.log('Video preview failed:', error);
-                        });
-                        thumbnail.style.opacity = '0';
-                    }, 200);
-                }
+            // Handle video end
+            video.addEventListener('ended', () => {
+                card.classList.remove('playing');
+                video.style.display = 'none';
+                thumbnail.style.opacity = '1';
             });
 
-            card.addEventListener('mouseleave', () => {
-                clearTimeout(previewTimeout);
-                if (video) {
-                    video.pause();
-                    video.currentTime = 0;
+            // Handle video pause
+            video.addEventListener('pause', () => {
+                if (!video.seeking) {
+                    card.classList.remove('playing');
                     video.style.display = 'none';
+                    thumbnail.style.opacity = '1';
                 }
-                thumbnail.style.opacity = '1';
             });
         }
     });
