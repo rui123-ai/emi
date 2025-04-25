@@ -317,6 +317,46 @@
         <p>🌙 Emizolas • 2025</p>
     </footer>
 
+    <!-- Drawing Popup -->
+    <div class="drawing-popup-overlay">
+        <div class="drawing-popup-content">
+            <button class="drawing-popup-close">&times;</button>
+            <img src="" alt="Drawing Preview">
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        // Popup functionality for drawings
+        document.addEventListener('DOMContentLoaded', function() {
+            const popup = document.querySelector('.drawing-popup-overlay');
+            const popupImg = popup.querySelector('img');
+            const closeBtn = popup.querySelector('.drawing-popup-close');
+            
+            // Add click event to all portfolio card images
+            document.querySelectorAll('.portfolio-card img').forEach(img => {
+                img.addEventListener('click', function() {
+                    popupImg.src = this.src;
+                    popupImg.alt = this.alt;
+                    popup.classList.add('active');
+                });
+            });
+
+            // Close popup when clicking close button or outside the image
+            closeBtn.addEventListener('click', () => popup.classList.remove('active'));
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    popup.classList.remove('active');
+                }
+            });
+
+            // Close popup with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && popup.classList.contains('active')) {
+                    popup.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

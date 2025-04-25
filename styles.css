@@ -133,9 +133,12 @@ body {
     color: var(--color-pastel-pink);
     text-shadow: none;
     animation: none;
-    border: 1px solid black;
-    padding: 10px 20px;
     display: inline-block;
+    padding: 0 10px;
+    line-height: 1.2;
+    border: 1px solid black;
+    width: fit-content;
+    margin: 0 auto 1rem;
 }
 
 .about-card {
@@ -1187,4 +1190,59 @@ section {
 
 .video-card[data-category="celebridades"]:hover {
     border-color: var(--color-pastel-lavender);
+}
+
+/* Popup styles for drawings */
+.drawing-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.drawing-popup-overlay.active {
+    display: flex;
+}
+
+.drawing-popup-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.drawing-popup-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+.drawing-popup-close {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.portfolio-card img {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-card img:hover {
+    transform: scale(1.05);
 } 
