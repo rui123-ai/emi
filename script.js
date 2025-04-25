@@ -19,20 +19,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Video IDs mapping
+    // Video IDs mapping - Substitua os IDs abaixo pelos IDs reais dos vídeos do YouTube
     const videoIds = {
-        'irma-mais-velha': 'VIDEO_ID_1',
-        'clipes-animados': 'VIDEO_ID_2',
-        'suco-de-abacaxi': 'VIDEO_ID_3',
-        'eu-odeio-o-calor': 'VIDEO_ID_4',
-        'coisa-de-pai': 'VIDEO_ID_5',
-        'estoy-cansadita': 'VIDEO_ID_6',
-        'alanzona': 'VIDEO_ID_7',
-        'alanzona-maethe': 'VIDEO_ID_8',
-        'inutilismo-filho-irritante': 'VIDEO_ID_9',
-        'inutilismo-filho-irritante-pascoa': 'VIDEO_ID_10',
-        'bagi': 'VIDEO_ID_11',
-        'coisa-nossa': 'VIDEO_ID_12'
+        // DIVERSOS
+        'irma-mais-velha': 'J593zH3l8kg', // Irmã mais Velha
+        'clipes-animados': 'ZoUAhvBtUow', // Clipes Animados
+
+        // MAIS POPULARES
+        'suco-de-abacaxi': 'gDd3aimPNic', // Suco de Abacaxi
+        'eu-odeio-o-calor': '', // Coloque o ID do vídeo "Eu Odeio o Calor" aqui
+        'coisa-de-pai': '', // Coloque o ID do vídeo "Coisa de Pai" aqui
+        'estoy-cansadita': '', // Coloque o ID do vídeo "Estoy Cansadita" aqui
+
+        // CELEBRIDADES
+        'alanzona': '', // Coloque o ID do vídeo "Alanzona" aqui
+        'alanzona-maethe': '', // Coloque o ID do vídeo "Alanzona e Maethe" aqui
+        'inutilismo-filho-irritante': '', // Coloque o ID do vídeo "Inutilismo - Um Filho Irritante" aqui
+        'inutilismo-filho-irritante-pascoa': '', // Coloque o ID do vídeo "Inutilismo - Um Filho Irritante na Páscoa" aqui
+        'bagi': '', // Coloque o ID do vídeo "Bagi" aqui
+        'coisa-nossa': '' // Coloque o ID do vídeo "Coisa Nossa" aqui
     };
 
     // Handle video playback
