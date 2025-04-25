@@ -162,4 +162,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', updateActiveNav);
     updateActiveNav(); // Initial call
+
+    // Inicializar todos os players de vídeo
+    document.querySelectorAll('.video-container').forEach(container => {
+        const video = container.querySelector('.video-player');
+        const playBtn = container.querySelector('.play-btn');
+        const fullscreenBtn = container.querySelector('.fullscreen-btn');
+        const progress = container.querySelector('.progress');
+        const progressBar = container.querySelector('.progress-bar');
+
+        // Play/Pause
+        playBtn.addEventListener('click', () => {
+            if (video.paused) {
+                // Pause todos os outros vídeos
+                document.querySelectorAll('.video-player').forEach(v => {
+                    if (v !== video) v.pause();
+                });
+                video.play();
+                playBtn.textContent = '⏸️';
+            } else {
+                video.pause();
+                playBtn.textContent = '▶️';
+            }
+        });
+
+        // Tela cheia
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                container.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // Atualizar barra de progresso
+        video.addEventListener('timeupdate', () => {
+            const percentage = (video.currentTime / video.duration) * 100;
+            progress.style.width = percentage + '%';
+        });
+
+        // Clique na barra de progresso
+        progressBar.addEventListener('click', (e) => {
+            const rect = progressBar.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / progressBar.offsetWidth;
+            video.currentTime = pos * video.duration;
+        });
+
+        // Reset quando o vídeo termina
+        video.addEventListener('ended', () => {
+            playBtn.textContent = '▶️';
+            progress.style.width = '0%';
+        });
+    });
 }); 
