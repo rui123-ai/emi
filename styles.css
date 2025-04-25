@@ -184,36 +184,30 @@ body {
 }
 
 .hero-title {
+    font-family: 'Sour Gummy', cursive;
     font-size: 4rem;
-    color: var(--color-text);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    animation: neonGlow 1.5s ease-in-out infinite alternate;
+    color: #fff;
+    text-shadow: 0 0 7px #fff,
+                 0 0 10px #fff,
+                 0 0 21px #ffd1dc,
+                 0 0 42px #ffd1dc;
+    animation: neonPulse 1.5s ease-in-out infinite alternate;
 }
 
-@keyframes neonGlow {
+@keyframes neonPulse {
     from {
-        text-shadow: 
-            0 0 10px #fff,
-            0 0 20px #fff,
-            0 0 30px #ff69b4,
-            0 0 40px #ff69b4,
-            0 0 50px #ff69b4,
-            0 0 60px #ff69b4,
-            0 0 70px #ff69b4;
+        text-shadow: 0 0 7px #fff,
+                     0 0 10px #fff,
+                     0 0 21px #ffd1dc,
+                     0 0 42px #ffd1dc;
     }
     to {
-        text-shadow: 
-            0 0 20px #fff,
-            0 0 30px #ff1493,
-            0 0 40px #ff1493,
-            0 0 50px #ff1493,
-            0 0 60px #ff1493,
-            0 0 70px #ff1493,
-            0 0 80px #ff1493;
+        text-shadow: 0 0 4px #fff,
+                     0 0 7px #fff,
+                     0 0 15px #ffd1dc,
+                     0 0 30px #ffd1dc;
     }
 }
 
