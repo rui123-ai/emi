@@ -273,12 +273,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to open video popup
     function openVideoPopup(videoSrc) {
         if (popupVideo && videoPopup) {
+            // Set video source and type
             popupVideo.src = videoSrc;
             videoPopup.style.display = 'flex';
             videoPopup.classList.add('active');
-            popupVideo.play().catch(error => {
-                console.log('Video autoplay failed:', error);
-            });
+            
+            // Play video after a short delay to ensure source is loaded
+            setTimeout(() => {
+                popupVideo.play().catch(error => {
+                    console.log('Video autoplay failed:', error);
+                });
+            }, 100);
         }
     }
 
@@ -286,6 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeVideoPopup() {
         if (popupVideo && videoPopup) {
             popupVideo.pause();
+            popupVideo.currentTime = 0;
             popupVideo.src = '';
             videoPopup.style.display = 'none';
             videoPopup.classList.remove('active');
@@ -294,50 +300,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add click event listeners to video cards
     allVideoCards.forEach(card => {
-        const video = card.querySelector('video');
+        const video = card.querySelector('.video-player');
         const thumbnail = card.querySelector('.video-thumbnail');
         const playButton = card.querySelector('.play-button');
 
         if (video && thumbnail && playButton) {
+            // Preload video metadata
+            video.preload = 'metadata';
+            
             // Click on play button or thumbnail
             const clickHandler = (e) => {
                 e.preventDefault();
-                const videoSrc = video.src;
-                openVideoPopup(videoSrc);
+                e.stopPropagation();
+                openVideoPopup(video.src);
             };
 
             playButton.addEventListener('click', clickHandler);
             thumbnail.addEventListener('click', clickHandler);
 
             // Preview on hover
+            let previewTimeout;
             card.addEventListener('mouseenter', () => {
                 if (video) {
-                    video.style.display = 'block';
-                    video.play().catch(error => {
-                        console.log('Video preview failed:', error);
-                    });
-                }
-                if (thumbnail) {
-                    thumbnail.style.opacity = '0';
+                    // Show video with a slight delay to prevent unwanted playback
+                    previewTimeout = setTimeout(() => {
+                        video.style.display = 'block';
+                        video.muted = true; // Ensure preview is muted
+                        video.play().catch(error => {
+                            console.log('Video preview failed:', error);
+                        });
+                        thumbnail.style.opacity = '0';
+                    }, 200);
                 }
             });
 
             card.addEventListener('mouseleave', () => {
+                clearTimeout(previewTimeout);
                 if (video) {
                     video.pause();
                     video.currentTime = 0;
                     video.style.display = 'none';
                 }
-                if (thumbnail) {
-                    thumbnail.style.opacity = '1';
-                }
+                thumbnail.style.opacity = '1';
             });
         }
     });
 
     // Close popup when clicking close button
     if (closePopupBtn) {
-        closePopupBtn.addEventListener('click', closeVideoPopup);
+        closePopupBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeVideoPopup();
+        });
     }
 
     // Close popup when clicking outside the video
