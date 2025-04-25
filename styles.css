@@ -129,7 +129,7 @@ body {
     font-family: 'Sour Gummy', cursive;
     font-size: 4rem;
     text-align: center;
-    color: #FFF4BD; /* Pastel yellow */
+    color: #FFF;
     text-shadow: 0 0 10px var(--color-pastel-pink),
                 0 0 20px var(--color-pastel-pink);
     display: inline-block;
