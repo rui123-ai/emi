@@ -271,20 +271,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to open video popup
     function openVideoPopup(videoSrc) {
-        const source = document.createElement('source');
-        source.src = videoSrc;
-        source.type = 'video/mp4';
-        
-        // Clear previous sources
-        while (popupVideoPlayer.firstChild) {
-            popupVideoPlayer.removeChild(popupVideoPlayer.firstChild);
-        }
-        
-        popupVideoPlayer.appendChild(source);
-        popupVideoPlayer.load(); // Important: reload the video with new source
+        popupVideoPlayer.src = videoSrc;
         videoPopupOverlay.classList.add('active');
-        
-        // Try to play the video
         popupVideoPlayer.play().catch(error => {
             console.log("Video autoplay prevented:", error);
         });
@@ -293,40 +281,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to close video popup
     function closeVideoPopup() {
         popupVideoPlayer.pause();
-        // Clear the source to stop loading
-        while (popupVideoPlayer.firstChild) {
-            popupVideoPlayer.removeChild(popupVideoPlayer.firstChild);
-        }
+        popupVideoPlayer.src = '';
         videoPopupOverlay.classList.remove('active');
     }
 
     // Add click event to video cards
     document.querySelectorAll('.video-card').forEach(card => {
+        const videoPlayer = card.querySelector('.video-player');
+        
         card.addEventListener('click', (e) => {
             // Prevent click if clicking on video controls
             if (e.target.closest('.video-controls')) return;
             
-            const videoPlayer = card.querySelector('.video-player source');
             if (videoPlayer && videoPlayer.src) {
                 openVideoPopup(videoPlayer.src);
             }
         });
-
-        // Preview on hover
-        const video = card.querySelector('.video-player');
-        if (video) {
-            card.addEventListener('mouseenter', () => {
-                video.currentTime = 0;
-                video.play().catch(() => {
-                    // Autoplay prevented - that's okay for preview
-                });
-            });
-
-            card.addEventListener('mouseleave', () => {
-                video.pause();
-                video.currentTime = 0;
-            });
-        }
     });
 
     // Close popup when clicking close button
