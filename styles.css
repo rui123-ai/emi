@@ -89,10 +89,13 @@ body {
 .hero > div:not(.hero-separator) {
     display: flex;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     justify-content: space-between;
-    align-items: center;
-    gap: 6rem;
+    align-items: stretch;
+    gap: 4rem;
     position: relative;
+    padding: 2rem;
 }
 
 .hero-separator {
@@ -164,6 +167,9 @@ body {
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hero-content {
@@ -180,22 +186,60 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
-    height: 120px;
-    background-image: url('images/flower-divider.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 2;
-    animation: floatDivider 3s ease-in-out infinite;
+    width: 2px;
+    height: 80%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 255, 255, 0.3) 20%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0.3) 80%,
+        transparent
+    );
 }
 
-@keyframes floatDivider {
+.hero-divider::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: dividerDot 3s ease-in-out infinite;
+}
+
+.hero-divider::after {
+    content: '✿';
+    position: absolute;
+    font-size: 1.2rem;
+    color: var(--color-pastel-pink);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: dividerFlower 4s ease-in-out infinite;
+}
+
+@keyframes dividerDot {
     0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
+        top: 20%;
+        opacity: 0;
     }
     50% {
-        transform: translate(-50%, -50%) scale(1.1);
+        top: 80%;
+        opacity: 1;
+    }
+}
+
+@keyframes dividerFlower {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg);
+        opacity: 1;
     }
 }
 
@@ -805,6 +849,7 @@ footer::before {
     .hero > div:not(.hero-separator) {
         flex-direction: column;
         gap: 2rem;
+        padding: 1rem;
     }
 
     .hero-content, .about-card {
@@ -814,7 +859,7 @@ footer::before {
     }
 
     .hero-separator {
-        margin: 2rem 0;
+        display: none;
     }
 
     .about-header {
@@ -823,10 +868,6 @@ footer::before {
 
     .about-text {
         text-align: left;
-    }
-
-    .hero-divider {
-        display: none;
     }
 }
 
