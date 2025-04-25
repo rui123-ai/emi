@@ -264,62 +264,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Video category filtering
-    const categoryHeaders = document.querySelectorAll('.category-header h4');
-    const allVideoCards = document.querySelectorAll('.video-card');
-
-    categoryHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const category = header.textContent.split(' ')[1].toLowerCase();
-            
-            // Remove active class from all headers
-            categoryHeaders.forEach(h => h.classList.remove('active'));
-            // Add active class to clicked header
-            header.classList.add('active');
-
-            // Filter videos
-            allVideoCards.forEach(card => {
-                const cardCategory = card.dataset.category;
-                if (category === 'todos' || cardCategory === category) {
-                    card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 10);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
-    });
-
-    // Video thumbnail hover effect
-    allVideoCards.forEach(card => {
-        const thumbnail = card.querySelector('.video-thumbnail');
-        const video = card.querySelector('.video-player');
-
-        if (thumbnail && video) {
-            card.addEventListener('mouseenter', () => {
-                thumbnail.style.opacity = '0';
-                video.currentTime = 0;
-                video.play().catch(() => {
-                    // Handle autoplay restriction
-                    thumbnail.style.opacity = '0.7';
-                });
-            });
-
-            card.addEventListener('mouseleave', () => {
-                thumbnail.style.opacity = '1';
-                video.pause();
-                video.currentTime = 0;
-            });
-        }
-    });
-
     // Video Popup Functionality
     const videoPopupOverlay = document.querySelector('.video-popup-overlay');
     const popupVideoPlayer = document.querySelector('.popup-video-player');
@@ -327,8 +271,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to open video popup
     function openVideoPopup(videoSrc) {
-        popupVideoPlayer.src = videoSrc;
+        const source = document.createElement('source');
+        source.src = videoSrc;
+        source.type = 'video/mp4';
+        
+        // Clear previous sources
+        while (popupVideoPlayer.firstChild) {
+            popupVideoPlayer.removeChild(popupVideoPlayer.firstChild);
+        }
+        
+        popupVideoPlayer.appendChild(source);
+        popupVideoPlayer.load(); // Important: reload the video with new source
         videoPopupOverlay.classList.add('active');
+        
+        // Try to play the video
         popupVideoPlayer.play().catch(error => {
             console.log("Video autoplay prevented:", error);
         });
@@ -337,22 +293,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to close video popup
     function closeVideoPopup() {
         popupVideoPlayer.pause();
-        popupVideoPlayer.src = '';
+        // Clear the source to stop loading
+        while (popupVideoPlayer.firstChild) {
+            popupVideoPlayer.removeChild(popupVideoPlayer.firstChild);
+        }
         videoPopupOverlay.classList.remove('active');
     }
 
-    // Add click event to video thumbnails
+    // Add click event to video cards
     document.querySelectorAll('.video-card').forEach(card => {
-        const videoPlayer = card.querySelector('.video-player');
-        const thumbnail = card.querySelector('.video-thumbnail');
-
         card.addEventListener('click', (e) => {
             // Prevent click if clicking on video controls
             if (e.target.closest('.video-controls')) return;
             
-            const videoSrc = videoPlayer.src;
-            openVideoPopup(videoSrc);
+            const videoPlayer = card.querySelector('.video-player source');
+            if (videoPlayer && videoPlayer.src) {
+                openVideoPopup(videoPlayer.src);
+            }
         });
+
+        // Preview on hover
+        const video = card.querySelector('.video-player');
+        if (video) {
+            card.addEventListener('mouseenter', () => {
+                video.currentTime = 0;
+                video.play().catch(() => {
+                    // Autoplay prevented - that's okay for preview
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
     });
 
     // Close popup when clicking close button
@@ -370,5 +344,36 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Escape' && videoPopupOverlay.classList.contains('active')) {
             closeVideoPopup();
         }
+    });
+
+    // Category filtering
+    const categoryHeaders = document.querySelectorAll('.category-header h4');
+    categoryHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            // Remove active class from all headers
+            categoryHeaders.forEach(h => h.classList.remove('active'));
+            // Add active class to clicked header
+            header.classList.add('active');
+
+            // Get category from header text
+            const category = header.textContent.split(' ')[1].toLowerCase();
+            
+            // Filter videos
+            document.querySelectorAll('.video-card').forEach(card => {
+                if (category === 'todos' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
     });
 }); 

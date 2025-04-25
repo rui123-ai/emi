@@ -515,21 +515,31 @@ h1 {
 }
 
 .video-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
     position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .video-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.video-header {
+.video-wrapper {
     position: relative;
-    width: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .video-title-overlay {
@@ -537,30 +547,34 @@ h1 {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1rem;
+    padding: 1.5rem;
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     z-index: 2;
+    transition: opacity 0.3s ease;
 }
 
 .video-title-overlay h3 {
     color: white;
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.video-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.video-description {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
 }
 
-.video-player {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.video-card:hover .video-description {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .video-thumbnail {
@@ -1181,4 +1195,32 @@ section {
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+/* Category styles */
+.video-card[data-category="diversos"] {
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.video-card[data-category="populares"] {
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.video-card[data-category="celebridades"] {
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.video-card[data-category="diversos"]:hover {
+    border-color: var(--color-pastel-pink);
+}
+
+.video-card[data-category="populares"]:hover {
+    border-color: var(--color-pastel-blue);
+}
+
+.video-card[data-category="celebridades"]:hover {
+    border-color: var(--color-pastel-lavender);
 } 
